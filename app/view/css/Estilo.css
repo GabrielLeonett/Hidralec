@@ -1,0 +1,461 @@
+/*Ajustes generales*/
+body{
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 400 !important;
+}
+h1{
+  font-size: large;
+  margin: 1rem !important;
+  font-weight: 700 !important;
+}
+/*Final de ajustes generales*/
+
+
+.navbar {
+  background-color: #f4b910;
+}
+.navbar-collapse{
+  align-items: center;
+  justify-content: space-between;
+}
+.btn.btn-primary{
+  background-color: #f4b910;
+  border: 2px solid black;
+}
+.bi-list{
+  color: black;
+  font-size: 2rem;
+}
+.container{
+  margin: 1rem;
+}
+.form-control{
+  border-bottom: 2px black solid !important;
+  height: 3.5rem;
+  border-radius: 0% !important;
+  width: 20rem;
+  background-color: #f4b910 !important;
+}
+.card{
+  width: 18rem !important;
+  margin: 1rem;
+}
+.card-img-top{
+  height: 20rem;
+}
+.footer{
+  color: #f4b910;
+}
+.imagenes-presenacion{
+  width: 200px !important;
+  height: auto;
+}
+/*Animacion de logo*/
+
+/*Animacion de logo*/
+
+/*Inicio de Carrusel*/
+#star-icono{
+  cursor: pointer !important;
+}
+
+#content_Carrusel {
+  height: 22em;
+  background: url(../img/Logos.webp) no-repeat center/cover;
+  border: 3px solid #f4b910;
+  overflow: hidden;
+  position: relative;
+}
+
+div[class^="elementos-"]{
+  position: absolute !important;
+  padding: 2em !important;
+  top: 17% !important;
+  background-color: whitesmoke;
+  width: 10em !important;
+  height: 15em !important;
+  border: 1.5px solid black !important;
+  border-radius: 10px !important;
+}
+
+.elementos-1{ left: 2em; z-index: 1; }
+.elementos-2{ left: 16em; }
+.elementos-3{ left: 30em; }
+.elementos-4 { left: 44em; }
+.elementos-5 { left: 58em; }
+.elementos-6{ left: 72em; }
+.elementos-7{ left: 86em; }
+.elementos-8{ left: 100em; }
+.elementos-9{ left: 114em; }
+.elementos-10{ left: 128em; }
+.elementos-11{ left: 142em;}
+.elementos-12{ left: 156em;}
+.elementos-13{ left: 170em;}
+.elementos-14{ left: 184em;}
+.elementos-15{ left: 198em;}
+
+/*Final de Carrusel*/
+
+/*Inicio de la animacion del logo*/
+#Animacion{
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 4;
+}
+#Fondo{
+  background-color: #f4b910;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: Aparecer_Desaparecer 3s ease;
+  animation-fill-mode: forwards;
+}
+#Cuadrado{
+  width: 10em;
+  height: 10em;
+  background-color: black;
+  position: relative;
+  animation: Aparecer_Cuadro 3s ease;
+}
+#Barra_Alta{
+  position: absolute;
+  height: 9.6em;
+  width: 1.5em;
+  top: 0.2em; 
+  left: 0.2em;
+  background-color: #f4b910;
+  animation: Alargado 1s ease;
+}
+#Barra_Baja1_Vertical{
+  position: absolute;
+  height: 3.8em;
+  width: 1.5em;
+  top: 0.2em; 
+  left: 4.5em;
+  background-color: #f4b910;
+  animation: Alargado1 1s ease;
+}
+#Barra_Baja2_Vertical{
+  position: absolute;
+  height: 3.8em;
+  width: 1.5em;
+  top: 6em; 
+  left: 4.5em;
+  background-color: #f4b910;
+  animation: Alargado1 1s ease;
+}
+#Barra_Central1_Horizontal{
+  position: absolute;
+  height: 1.6em;
+  width: 4.3em;
+  top: 4.2em; 
+  left: 1.7em;
+  background-color: #f4b910;
+  animation: Anchura 1s ease;
+}
+#Barra_Central2_Horizontal{
+  position: absolute;
+  height: 1.6em;
+  width: 3.5em;
+  top: 0.2em; 
+  left: 6.2em;
+  background-color: #f4b910;
+  animation: Anchura1 1s ease;
+}
+#Barra_Central3_Horizontal{
+  position: absolute;
+  height: 1.6em;
+  width: 2em;
+  top: 4.2em; 
+  left: 6.2em;
+  background-color: #f4b910;
+  animation: Anchura2 1s ease;
+
+}
+#Barra_Central4_Horizontal{
+  position: absolute;
+  height: 1.6em;
+  width: 3.5em;
+  top: 8.2em; 
+  left: 6.2em;
+  background-color: #f4b910;
+  animation: Anchura1 1s ease;
+}
+@keyframes Alargado {
+  0%{
+      height: 0em;
+  }
+  100%{
+      height: 9.6em;
+  }
+}
+@keyframes Alargado1 {
+  0%{
+      height: 0em;
+  }
+  100%{
+      height: 3.8em;
+  }
+}
+@keyframes Aparecer_Cuadro {
+  0%{
+      opacity: 0%;
+  }
+  100%{
+      opacity: 100%;
+  }
+}
+@keyframes Anchura {
+  0%{
+      width: 0em;
+  }
+  100%{
+      width: 4.3em;
+
+  }
+}
+@keyframes Anchura1 {
+  0%{
+      width: 0em;
+  }
+  100%{
+      width: 3.5em;
+
+  }
+}
+@keyframes Anchura2 {
+  0%{
+      width: 0em;
+  }
+  100%{
+      width: 2em;
+
+  }
+}
+@keyframes Aparecer_Desaparecer{
+  0%{
+      opacity: 100%;
+  }
+  100%{
+      opacity: 0%;
+      display: none;
+  }
+}
+/*Final de la animacion del logo*/
+/*Final*/
+/*Produtos */
+
+.btn.btn-primary.float-end {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-right: 0% !important;
+  border-right: none;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #f4b910;
+  color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.btn.btn-primary.float-end:hover {
+  background-color: #fdc630;
+}
+
+.offcanvas.offcanvas-end{
+  width: 450px !important;
+  background-color: #f4b910 !important;
+}
+.iconos-carrito{
+  cursor: pointer !important;
+}
+.container.contenedor-carrito{
+  height: 20rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+/* final de productos */
+
+/*Admin*/
+.barra-lateral{
+  background-color: #f4b910 !important;
+}
+.nav-link.text-black:hover{
+  background-color: black !important;
+  color: whitesmoke !important;
+}
+.link-body-emphasis{
+  margin-left: 15px !important;
+}
+/*********************Inicio de los estilos de Login y registrate********************************/
+
+main {
+  width: 100%;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 4.8em;
+  margin-top: 100px;
+}
+
+.contenedor--todo {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+}
+
+.caja--trasera {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(244, 185, 16, 0.5); 
+}
+
+.caja--trasera div {
+  margin: 100px 40px;
+  color: black;
+  transition: all 500ms;
+}
+
+.caja--trasera div p,
+.caja--trasera div button {
+  margin-top: 30px;
+}
+
+.caja--trasera div h3 {
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.caja--trasera button {
+  padding: 10px 40px;
+  border: 2px solid #17202a;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #17202a;
+  outline: none;
+  transform: all 300ms;
+}
+
+.caja--trasera button:hover {
+  background: #17202a;
+  color: #f4b910;
+}
+
+/*formularios*/
+
+.contenedor--loginRegister {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  top: -185px;
+  left: 10px;
+
+  transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.contenedor--loginRegister form {
+  width: 100%;
+  padding: 80px 20px;
+  background: #bdc3c7;
+  position: absolute;
+  border-radius: 20px;
+}
+
+.contenedor--loginRegister form h2 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #17202a;
+}
+
+.contenedor--loginRegister form input {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  background: #f2f2f2;
+  font-size: 16px;
+  outline: none;
+}
+
+.contenedor--loginRegister form button {
+  padding: 10px 40px;
+  margin-top: 40px;
+  border: none;
+  font-size: 14px;
+  background: #17202a;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.formulario--login {
+  opacity: 1;
+  display: block;
+}
+
+.formulario--register {
+  display: none;
+}
+
+/********************Final de los estilos de login y registrate***********************/
+
+.alert.alert-warning{
+  background-color: rgba(211, 5, 5, 0.8) !important;
+  color: black !important;
+}
+.alert.alert-success{
+  background-color: rgba(23, 153, 23, 0.8) !important;
+  color: white !important;
+}
+
+/*Servicios*/
+.contenerdores{
+  background-color: #f4b910 !important;
+}
+
+/****************************************************************************/
+.Carrito{
+  background-color: #f4b910 !important;
+}
+
+.imagen_producto{
+  width: 40em !important;
+  height: auto;
+}
+
+
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+  body {
+      font-size: 10px;
+      margin: 0%;
+  }
+}
+
+/* Media query para pantallas medianas (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  body {
+      font-size: 18px;
+      margin: 0%;
+  }
+}
+
+/* Media query para pantallas grandes (escritorio) */
+@media only screen and (min-width: 1025px) {
+  body {
+      font-size: 20px;
+      margin: 0%;
+  }
+}

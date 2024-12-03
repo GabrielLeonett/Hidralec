@@ -67,8 +67,8 @@ function Aceptar_pedido(button) {
             listaEspera.push({ id: BotonID, nombre: Nombre });
 
             zona_alerta.innerHTML += `
-                <div class="alert alert-danger" role="alert" id="alerta${BotonID}">
-                    Quiere Cancelar la eliminación del producto: <strong>${Nombre}</strong>
+                <div class="alert alert-success" role="alert" id="alerta${BotonID}">
+                    Quiere Cancelar la Aceptacion del producto: <strong>${Nombre}</strong>
                     <button type="button" class="btn btn-outline-danger opacity-75 mx-3 btn_cancelar${BotonID}">Cancelar</button>
                 </div>
             `;
@@ -77,10 +77,10 @@ function Aceptar_pedido(button) {
 
             let temporizador = setTimeout(function() {
                 const data = new URLSearchParams();
-                data.append('boton', BotonID); // Asegúrate de que BotonID está definido
-                data.append('modulo_producto', 'eliminar');
+                data.append('ID_Venta', BotonID); // Asegúrate de que BotonID está definido
+                data.append('modulo_pedido', 'aceptar');
                 let method = 'POST';
-                let action = 'app/ajax/productoAjax.php';
+                let action = 'app/ajax/pedidoAjax.php';
 
                 let config = {
                     method: method,
@@ -98,7 +98,7 @@ function Aceptar_pedido(button) {
                         alertas_ajax(respuesta);
                         listaEspera = listaEspera.filter(item => item.id !== BotonID);
                     });
-            }, 60000);
+            }, 10000);
 
             botonCancelar.addEventListener('click', function() {
                 clearTimeout(temporizador);
@@ -142,10 +142,10 @@ function Eliminar_pedido(button) {
 
             let temporizador = setTimeout(function() {
                 const data = new URLSearchParams();
-                data.append('boton', BotonID); // Asegúrate de que BotonID está definido
-                data.append('modulo_producto', 'eliminar');
+                data.append('ID_Venta', BotonID); // Asegúrate de que BotonID está definido
+                data.append('modulo_pedido', 'eliminar');
                 let method = 'POST';
-                let action = 'app/ajax/productoAjax.php';
+                let action = 'app/ajax/pedidoAjax.php';
 
                 let config = {
                     method: method,
@@ -163,7 +163,7 @@ function Eliminar_pedido(button) {
                         alertas_ajax(respuesta);
                         listaEspera = listaEspera.filter(item => item.id !== BotonID);
                     });
-            }, 60000);
+            }, 10000);
 
             botonCancelar.addEventListener('click', function() {
                 clearTimeout(temporizador);

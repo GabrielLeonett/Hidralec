@@ -277,11 +277,7 @@
             $consulta = "(Nombre_Productos LIKE :busqueda OR Descripcion_Producto LIKE :busqueda OR Precio LIKE :busqueda OR Stock LIKE :busqueda OR `Areas de uso` LIKE :busqueda)";
             $buscador = $this->Buscador("productos",$consulta,$buscador);
             return $buscador;
-            }else{
-                echo "No cumple lo que esta pidiendo el campo";
-                return;
             }
-
         }
 
         #funcion para eliminar productos en la base de datos

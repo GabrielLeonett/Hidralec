@@ -156,7 +156,7 @@
                         "tipo" => "simple",
                         "icono" => "success",
                         "titulo" => "Perfecto",
-                        "texto" => "se ha registrado el usuario"
+                        "texto" => "Se ha registrado el usuario"
                     ];
                     return $error;
                     

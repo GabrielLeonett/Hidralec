@@ -163,15 +163,23 @@ function quitarCarrito(e) {
 //Funcion para Hacer que los botones corresponden a su producto
 function guardarDatos() {
     let botones_Agregar = document.querySelectorAll('.agregar');
-
     botones_Agregar.forEach(boton_A => {
-        let cuadro = boton_A.closest('.card-body');
+        let cuadro = boton_A.closest('.card-body') || boton_A.closest('.especificaciones');
 
         if (cuadro) {
-            let precio = cuadro.querySelector('.precio')?.getAttribute('data-precio');
-            let nombre = cuadro.querySelector('.card-title')?.getAttribute('data-nombre');
-            let stock = cuadro.querySelector('.stock')?.getAttribute('data-stock');
-            let ID_producto = cuadro.querySelector('.agregar')?.getAttribute('data-id');
+            let precio, nombre, stock, ID_producto;
+
+            if (cuadro.classList.contains('card-body')) {
+                precio = cuadro.querySelector('.precio')?.getAttribute('data-precio');
+                nombre = cuadro.querySelector('.card-title')?.getAttribute('data-nombre');
+                stock = cuadro.querySelector('.stock')?.getAttribute('data-stock');
+                ID_producto = cuadro.querySelector('.agregar')?.getAttribute('data-id');
+            } else if (cuadro.classList.contains('especificaciones')) {
+                precio = cuadro.querySelector('h3:nth-of-type(1)')?.textContent.split(': ')[1];
+                nombre = cuadro.querySelector('h1')?.textContent;
+                stock = cuadro.querySelector('h3:nth-of-type(2)')?.textContent.split(': ')[1];
+                ID_producto = cuadro.querySelector('.agregar')?.getAttribute('data-id');
+            }
 
             if (stock === "0" || !precio || !nombre) {
                 return;
@@ -182,14 +190,15 @@ function guardarDatos() {
                 Precio: precio,
                 Stock: stock,
                 N_boton: ID_producto
-
             };
 
+            console.log("se ejecuto");
             Productos.push(Producto);
             boton_A.setAttribute('data-id', ID_producto); // Asocia el botón con el producto
         }
     });
 }
+
 
 //Usando las funciones creadas con sus respectivos eventos
 document.addEventListener('DOMContentLoaded', () => {

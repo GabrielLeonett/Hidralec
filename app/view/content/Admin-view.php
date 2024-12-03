@@ -5,3 +5,4 @@
         $pedido->seleccionarTodosPedidos();
     ?>
 </div>
+<script src="<?php echo APP_URL?>app/view/js/Pedido.js"></script>

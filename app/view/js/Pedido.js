@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function Aceptar_pedido(button) {
     let BotonID = button.getAttribute('data-id');
-    let Nombre = button.getAttribute('data-nombre');
+    let Nombre = button.getAttribute('data-id');
     
     Swal.fire({
         title: 'Aceptar',
@@ -112,7 +112,7 @@ function Aceptar_pedido(button) {
 
 function Eliminar_pedido(button) {
     let BotonID = button.getAttribute('data-id');
-    let Nombre = button.getAttribute('data-nombre');
+    let Nombre = button.getAttribute('data-id');
     
     Swal.fire({
         title: 'Eliminar',

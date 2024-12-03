@@ -1,0 +1,5 @@
+Options All -Indexes
+
+RewriteEngine On
+RewriteBase /Proyecto_Hidralec/
+RewriteRule ^([a-zA-Z0-9/ñÑ-]+)(/)?$ index.php?views=$1 [L]

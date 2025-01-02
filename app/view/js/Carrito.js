@@ -163,23 +163,15 @@ function quitarCarrito(e) {
 //Funcion para Hacer que los botones corresponden a su producto
 function guardarDatos() {
     let botones_Agregar = document.querySelectorAll('.agregar');
+
     botones_Agregar.forEach(boton_A => {
-        let cuadro = boton_A.closest('.card-body') || boton_A.closest('.especificaciones');
+        let cuadro = boton_A.closest('.card-body');
 
         if (cuadro) {
-            let precio, nombre, stock, ID_producto;
-
-            if (cuadro.classList.contains('card-body')) {
-                precio = cuadro.querySelector('.precio')?.getAttribute('data-precio');
-                nombre = cuadro.querySelector('.card-title')?.getAttribute('data-nombre');
-                stock = cuadro.querySelector('.stock')?.getAttribute('data-stock');
-                ID_producto = cuadro.querySelector('.agregar')?.getAttribute('data-id');
-            } else if (cuadro.classList.contains('especificaciones')) {
-                precio = cuadro.querySelector('h3:nth-of-type(1)')?.textContent.split(': ')[1];
-                nombre = cuadro.querySelector('h1')?.textContent;
-                stock = cuadro.querySelector('h3:nth-of-type(2)')?.textContent.split(': ')[1];
-                ID_producto = cuadro.querySelector('.agregar')?.getAttribute('data-id');
-            }
+            let precio = cuadro.querySelector('.precio')?.getAttribute('data-precio');
+            let nombre = cuadro.querySelector('.card-title')?.getAttribute('data-nombre');
+            let stock = cuadro.querySelector('.stock')?.getAttribute('data-stock');
+            let ID_producto = cuadro.querySelector('.agregar')?.getAttribute('data-id');
 
             if (stock === "0" || !precio || !nombre) {
                 return;
@@ -190,17 +182,16 @@ function guardarDatos() {
                 Precio: precio,
                 Stock: stock,
                 N_boton: ID_producto
+
             };
 
-            console.log("se ejecuto");
             Productos.push(Producto);
             boton_A.setAttribute('data-id', ID_producto); // Asocia el botón con el producto
         }
     });
 }
 
-
-//Usando las funciones creadas con sus respectivos eventos
+// Usando las funciones creadas con sus respectivos eventos
 document.addEventListener('DOMContentLoaded', () => {
     guardarDatos();
     CookieDelCarritoDeCompra();
@@ -236,13 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 });
 
-//Función para actualizar la cookie
+// Función para actualizar la cookie
 function actualizarCookie(){
     let CookieCompra = JSON.stringify(Compra);
-    document.cookie = "La_Compra=" + CookieCompra + "; path=/; expires=Fri, 31 Dec 2024 23:59:59 GMT";
+    let fechaExpiracion = new Date();
+    fechaExpiracion.setTime(fechaExpiracion.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 días en milisegundos
+    let expires = "expires=" + fechaExpiracion.toUTCString();
+    document.cookie = "La_Compra=" + CookieCompra + "; path=/; " + expires;
 }
 
-//Función para leer la cookie
+
+// Función para leer la cookie
 function leerCookies(nombre){
     let arrayCookies = document.cookie.split(";");
 
@@ -278,7 +273,5 @@ function CookieDelCarritoDeCompra() {
         })
         let Monto_Carrito = document.querySelector('.Monto');
         Monto_Carrito.innerHTML = `${Compra.Monto}$`;
-    } else {
-        console.log("No se encontró la cookie 'La_Compra'");
     }
 }

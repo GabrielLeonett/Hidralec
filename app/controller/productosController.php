@@ -277,59 +277,108 @@
             $consulta = "(Nombre_Productos LIKE :busqueda OR Descripcion_Producto LIKE :busqueda OR Precio LIKE :busqueda OR Stock LIKE :busqueda OR `Areas de uso` LIKE :busqueda)";
             $buscador = $this->Buscador("productos",$consulta,$buscador);
             return $buscador;
+            }else{
+                echo "No cumple lo que esta pidiendo el campo";
+                return;
             }
+
         }
 
         #funcion para eliminar productos en la base de datos
-        public function eliminarProducto(){
-            if(isset($_POST['boton'])){
-                   $Boton = $_POST['boton']; 
-
-                   $datos = [
-                    "campos_nombre" => "ID_Productos",
-                    "campos_marcador" => ":ID",
-                    "campos_valor" => $Boton
+        public function eliminarProducto() {
+            if (isset($_POST['boton'])) {
+                $Boton = $_POST['boton'];
+        
+                $datos = [
+                    [
+                        "campos_nombre" => "Eliminado",
+                        "campos_marcador" => "El",
+                        "campos_valor" => 1
+                    ]
+                ];
+        
+                $ID = [
+                    "Campo" => "ID_Productos",
+                    "Valor" => $Boton
+                ];
+        
+                $respuesta = $this->modificarDatos('productos', $datos, $ID);
+        
+                if ($respuesta->rowCount() > 0) {
+                    $alerta = [
+                        "tipo" => "simple",
+                        "icono" => "success",
+                        "titulo" => "Perfecto",
+                        "texto" => "El producto ha sido eliminado."
                     ];
-
-                    $eliminar_imagen = [
-                    "campos" => "DIr_Imagen",
-                    "modo" => $datos
+                    return $alerta;
+                } else {
+                    $error = [
+                        "tipo" => "simple",
+                        "icono" => "error",
+                        "titulo" => "Opps a ocurrido un error",
+                        "texto" => "El producto no está registrado. Por favor, reinicia la página."
                     ];
-
-                    $nombre_imagen = $this->seleccionarDatos('productos',$eliminar_imagen);
-                    $respuesta = $this->eliminarDatos('productos',$datos);
-                    
-                    if($respuesta->rowCount() > 0 && $nombre_imagen->rowCount() > 0){
-                        $this->eliminarImagen($nombre_imagen);
-                        $alerta = [
-                            "tipo" => "simple",
-                            "icono" => "success",
-                            "titulo" => "Perfecto",
-                            "texto" => "El producto ha sido eliminado."
-                            ];
-                        return $alerta;
-                        exit();
-                    }else{
-                        $error = [
-                            "tipo" => "simple",
-                            "icono" => "error",
-                            "titulo" => "Opps a ocurrido un error",
-                            "texto" => "El producto no esta registrado por favor reiniciar la pagina."
-                            ];
-                        return $error;
-                        exit();
-                    }
-            }else{
+                    return $error;
+                }
+            } else {
                 $error = [
                     "tipo" => "simple",
                     "icono" => "error",
                     "titulo" => "Opps a ocurrido un error",
-                    "texto" => "El producto no esta registrado por favor reiniciar la pagina."
-                    ];
+                    "texto" => "El producto no está registrado. Por favor, reinicia la página."
+                ];
                 return $error;
-                exit();
             }
+        }
+        
+        
 
+        public function habilitarProducto(){
+            if (isset($_POST['boton'])) {
+                $Boton = $_POST['boton'];
+        
+                $datos = [
+                    [
+                        "campos_nombre" => "Eliminado",
+                        "campos_marcador" => "El",
+                        "campos_valor" => 0
+                    ]
+                ];
+        
+                $ID = [
+                    "Campo" => "ID_Productos",
+                    "Valor" => $Boton
+                ];
+        
+                $respuesta = $this->modificarDatos('productos', $datos, $ID);
+        
+                if ($respuesta->rowCount() > 0) {
+                    $alerta = [
+                        "tipo" => "simple",
+                        "icono" => "success",
+                        "titulo" => "Perfecto",
+                        "texto" => "El producto ha sido habilitado."
+                    ];
+                    return $alerta;
+                } else {
+                    $error = [
+                        "tipo" => "simple",
+                        "icono" => "error",
+                        "titulo" => "Opps a ocurrido un error",
+                        "texto" => "El producto no está registrado. Por favor, reinicia la página."
+                    ];
+                    return $error;
+                }
+            } else {
+                $error = [
+                    "tipo" => "simple",
+                    "icono" => "error",
+                    "titulo" => "Opps a ocurrido un error",
+                    "texto" => "El producto no está registrado. Por favor, reinicia la página."
+                ];
+                return $error;
+            }
         }
 
         public function mostrarFormularioActualizar(){

@@ -31,6 +31,10 @@
                 echo json_encode($respuesta);
             }
 
+            elseif ($_POST['modulo_producto'] == "habilitar") {
+                $respuesta = $controladorProductos->habilitarProducto();
+                echo json_encode($respuesta);
+            }
         } else {
             session_destroy();
             header("Location: " . APP_URL . "login");

@@ -169,7 +169,72 @@ function Eliminar(button) {
                         alertas_ajax(respuesta);
                         listaEspera = listaEspera.filter(item => item.id !== BotonID);
                     });
-            }, 60000);
+            }, 10000);
+
+            botonCancelar.addEventListener('click', function() {
+                clearTimeout(temporizador);
+                document.querySelector('#alerta' + BotonID).remove();
+                listaEspera = listaEspera.filter(item => item.id !== BotonID);
+            });
+        }
+
+    })
+}
+
+function Habilitar(button) {
+    let BotonID = button.getAttribute('data-id');
+    let Nombre = button.getAttribute('data-nombre');
+    
+    Swal.fire({
+        title: 'Eliminar',
+        text: "Seguro que quieres Habilitar este producto: " + Nombre,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, realizar',
+        cancelButtonText: 'No, cancelar'
+    }).then((resultado) => {
+        if (resultado.isConfirmed) {
+            
+            const zona_alerta = document.querySelector('.alerta');
+            
+            // Añadir a la lista de espera
+            listaEspera.push({ id: BotonID, nombre: Nombre });
+
+            zona_alerta.innerHTML += `
+                <div class="alert alert-danger" role="alert" id="alerta${BotonID}">
+                    Quiere Cancelar la eliminación del producto: <strong>${Nombre}</strong>
+                    <button type="button" class="btn btn-outline-danger opacity-75 mx-3 btn_cancelar${BotonID}">Cancelar</button>
+                </div>
+            `;
+
+            const botonCancelar = document.querySelector('.btn_cancelar' + BotonID);
+
+            let temporizador = setTimeout(function() {
+                const data = new URLSearchParams();
+                data.append('boton', BotonID); // Asegúrate de que BotonID está definido
+                data.append('modulo_producto', 'habilitar');
+                let method = 'POST';
+                let action = 'app/ajax/productoAjax.php';
+
+                let config = {
+                    method: method,
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    body: data
+                };
+
+                fetch(action, config)
+                    .then(respuesta => respuesta.json())
+                    .then(respuesta => {
+                        if(respuesta.texto === "El producto ha sido eliminado"){
+                            respuesta.texto = "El producto "+Nombre+" ha sido eliminado";
+                        }
+                        alertas_ajax(respuesta);
+                        listaEspera = listaEspera.filter(item => item.id !== BotonID);
+                    });
+            }, 10000);
 
             botonCancelar.addEventListener('click', function() {
                 clearTimeout(temporizador);

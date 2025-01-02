@@ -5,6 +5,7 @@ namespace app\controller;
 use app\controller\productosController;
 
 class cookiesController extends productosController{
+
     public function cookieCompra() {
         if (isset($_COOKIE['La_Compra'])) {
             $cookie_vieja = json_decode($_COOKIE['La_Compra'], true); // Decodificar JSON
@@ -12,7 +13,7 @@ class cookiesController extends productosController{
                 "Orden" => [],
                 "Monto" => 0
             ];
-    
+
             if (isset($cookie_vieja['Orden']) && is_array($cookie_vieja['Orden'])) {
                 foreach ($cookie_vieja['Orden'] as $producto) {
                     $productoBD = $this->unSoloProducto($producto['N_boton']);
@@ -24,7 +25,7 @@ class cookiesController extends productosController{
                                 "Precio" => $productoBD['Precio'],
                                 "cantidad" => $producto['cantidad']
                             ];
-    
+
                             if ($productoBD['Precio'] != $producto['Precio']) {
                                 $Vector['Precio'] = $productoBD['Precio'];
                                 echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
@@ -37,7 +38,7 @@ class cookiesController extends productosController{
                                     })
                                 </script>';
                             }
-    
+
                             array_push($cookie_nueva['Orden'], $Vector);
                             $cookie_nueva['Monto'] += $producto['cantidad'] * $productoBD['Precio'];
                         } else {
@@ -52,10 +53,9 @@ class cookiesController extends productosController{
                     }
                 }
             }
-    
+
             // Actualizar la cookie con la nueva información
             setcookie('La_Compra', json_encode($cookie_nueva), time() + (60 * 60 * 24 * 7), "/");
         }
     }
-    
 }

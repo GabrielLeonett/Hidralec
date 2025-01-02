@@ -62,4 +62,4 @@
     }
     ?>
 
-<script src="<?php echo APP_URL?>app/view/js/pedido.js"></script>
+<script src="<?php echo APP_URL?>app/view/js/Pedido.js"></script>

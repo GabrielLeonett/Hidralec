@@ -50,12 +50,6 @@
             <li><a href="<?php echo APP_URL?>consultarVentas" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Consultar Ventas</a></li>
           </ul>
       </li>
-      <li class="nav-item mx-2 my-2">
-          <a href="<?php echo APP_URL?>AdminUsuarios" class="nav-link active" aria-current="page">
-            <i class="bi bi-person-circle fs-4"></i>
-            <strong class="mx-2">Usuarios</strong>
-          </a>
-      </li>
       </ul>
     <hr>
     <div class="dropdown">
